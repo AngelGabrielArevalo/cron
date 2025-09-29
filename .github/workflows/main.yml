@@ -1,14 +1,16 @@
 name: Wake Render before daily
 
 on:
+  push:
+    branches: [ main ]     # fuerza detección al hacer un commit/push
+  workflow_dispatch: {}     # te deja correrlo a mano
   schedule:
     # 09:15 / 09:20 / 09:25 AR (UTC-3) => 12:15 / 12:20 / 12:25 UTC
     - cron: "15 12 * * 1-5"
     - cron: "20 12 * * 1-5"
     - cron: "25 12 * * 1-5"
     - cron: "28 12 * * 1-5"
-    - cron: "54 23 * * 1-5"
-  workflow_dispatch: {}   # permite ejecutarlo a mano para test
+    - cron: "00 00 * * 1-5"
 
 jobs:
   ping:
